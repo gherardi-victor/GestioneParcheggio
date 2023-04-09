@@ -14,6 +14,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -58,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681055964360</updated>
       <workItem from="1681055965160" duration="3684000" />
-      <workItem from="1681059930902" duration="15000" />
+      <workItem from="1681059930902" duration="4195000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1681059718159</created>
