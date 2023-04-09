@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1197.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gestioneparcheggio.Controller">
+   <children>
+      <Rectangle fill="#2c2c2c" height="720.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="250.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="75.0" layoutX="112.0" layoutY="645.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="15.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" layoutX="112.0" layoutY="495.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="15.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" layoutX="112.0" layoutY="345.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="15.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" layoutX="112.0" layoutY="195.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="15.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" layoutX="112.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="15.0" />
+      <Line endX="294.0" endY="93.0" layoutX="740.0" layoutY="145.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Line endX="294.0" endY="93.0" layoutX="580.0" layoutY="145.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Line endX="294.0" endY="93.0" layoutX="420.0" layoutY="145.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Line endX="294.0" endY="93.0" layoutX="260.0" layoutY="145.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Line endX="297.0" endY="574.9999389648438" layoutX="900.0" layoutY="145.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Line endX="294.0" endY="93.0" layoutX="260.0" layoutY="625.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Line endX="294.0" endY="93.0" layoutX="420.0" layoutY="625.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Line endX="294.0" endY="93.0" layoutX="580.0" layoutY="625.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Line endX="294.0" endY="93.0" layoutX="740.0" layoutY="625.0" startX="294.0" startY="-145.0" stroke="#2c2c2c" strokeWidth="5.0" />
+      <Label layoutX="308.0" layoutY="68.0" prefHeight="87.0" prefWidth="196.0" text="Gestione Parcheggio" textAlignment="CENTER" textFill="#2c2c2c" underline="true" wrapText="true">
+         <font>
+            <Font name="Segoe UI Bold" size="30.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="sbarra_chiusa" arcHeight="10.0" arcWidth="10.0" fill="#2c2c2c" height="12.0" layoutX="208.0" layoutY="362.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="222.0" />
+      <Rectangle fx:id="sbarra_aperta" arcHeight="10.0" arcWidth="10.0" fill="#2c2c2c" height="12.0" layoutX="319.0" layoutY="471.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="222.0" />
+      <Circle fill="#2c2c2c" layoutX="319.0" layoutY="477.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <ImageView fitWidth="150.0" layoutX="44.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+         <image>
+            <Image url="@car-purple.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="35.0" arcWidth="35.0" fill="#2c2c2c" height="161.0" layoutX="288.0" layoutY="523.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="61.0" />
+      <Circle fill="#777700" layoutX="319.0" layoutY="604.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#007700" layoutX="319.0" layoutY="651.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#770000" layoutX="319.0" layoutY="557.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+   </children>
+</Pane>
