@@ -10,7 +10,6 @@ import java.util.concurrent.Semaphore;
 
 public class Parcheggio extends Thread{
     public Semaphore parcheggio = new Semaphore(8);
-    public int[][] positions = {{}, {}};
     public boolean[] posti;
     // macchina, posto in cui è parcheggiata
     HashMap<ImageView, Integer> macchine = new HashMap<>();
@@ -26,28 +25,32 @@ public class Parcheggio extends Thread{
             while (true){
                 controllaPosti();
                 if(Parcheggio.pieno){
-                    System.out.println("sto liberando");
+                    System.out.println("PARCHEGGIO PIENO, LIBERO");
                     liberaParcheggio();
                     continue;
                 }
                 boolean parcheggioVuoto = true;
-                for(Boolean b : posti) if(b) {
-                    parcheggioVuoto = false;
-                    break;
+                for(Boolean b : posti) {
+                    if (b) {
+                        parcheggioVuoto = false;
+                        break;
+                    }
                 }
                 if (parcheggioVuoto){
-                    System.out.println("sto parcheggiando");
+                    System.out.println("PARCHEGGIO PIENO, PARCHEGGIO");
                     parcheggiaAuto();
                     continue;
                 }
-                if(Math.random() < 0.5){
-                    System.out.println("sto parcheggiando");
+
+                if(Math.random() < 0.7){
+                    System.out.println("PARCHEGGIO");
                     parcheggiaAuto();
                 } else {
-                    System.out.println("sto liberando");
+                    System.out.println("LIBERO");
                     liberaParcheggio();
                 }
-                System.out.println("sto aspettando");
+
+                controllaPosti();
                 sleep(2000);
             }
         } catch (Exception e) {
@@ -64,14 +67,13 @@ public class Parcheggio extends Thread{
             }
         }
         // trova il posto random in cui parcheggiare
-        boolean trovato = false;
-        int numeroParcheggio = (int) (Math.random() * this.posti.length);
-        while(trovato){
+        int numeroParcheggio;
+        do {
             numeroParcheggio = (int) (Math.random() * this.posti.length);
-            if(!this.posti[numeroParcheggio]) trovato = true;
-        }
+        } while (this.posti[numeroParcheggio]);
 
         // parcheggio l'auto
+        assert car != null;
         car.setRotate(-90);
         car.setLayoutX(44);
         car.setLayoutY(608);
@@ -83,66 +85,54 @@ public class Parcheggio extends Thread{
         car.setLayoutY(323);
 
         sleep(1000);
-        System.out.println("numero parcheggio: " + numeroParcheggio);
 
-        if(numeroParcheggio == 0 || numeroParcheggio == 4){
-            car.setLayoutX(556);
-        }
-        if(numeroParcheggio == 1 || numeroParcheggio == 5){
-            car.setLayoutX(721);
-        }
-        if(numeroParcheggio == 2 || numeroParcheggio == 6){
-            car.setLayoutX(882);
-        }
-        if(numeroParcheggio == 3 || numeroParcheggio == 7){
-            car.setLayoutX(1042);
-        }
+        // sposta la macchina alla stessa x del parcheggio scelto (random)
+        int[] positions = {556, 721, 882, 1042};
+        car.setLayoutX(positions[numeroParcheggio % 4]);
         sleep(1000);
 
-        // per far entrare la macchina in retro o normale
-        if(Math.random() < 0.5){
-            car.setRotate(90);
-        } else {
-            car.setRotate(-90);
-        }
+        // parcheggiare l'auto normale o in retro
+        car.setRotate(Math.random() < 0.5 ? 90 : -90);
+
         sleep(1000);
+
         // parcheggiare l'auto nel posto
-        if(numeroParcheggio < 4){
-            car.setLayoutY(92);
-        } else{
-            car.setLayoutY(562);
-        }
+        car.setLayoutY(numeroParcheggio < 4 ? 92 : 562);
 
+        // associare il parcheggio alla macchina
         macchine.put(car, numeroParcheggio);
+        // occupare il parcheggio
         this.posti[numeroParcheggio] = true;
+        // fare l'acquire del Semaphore
         parcheggio.acquire();
     }
     public void liberaParcheggio() throws Exception {
         // trovare il parcheggio da liberare
-        boolean trovato = false;
-        int index = 0;
-        while(trovato){
+        int index;
+        do {
             index = (int) (Math.random() * this.posti.length);
-            if(this.posti[index]) trovato = true;
-        }
+        } while (!this.posti[index]);
 
         // trovare la macchina dal parcheggio
         ImageView car = null;
-        System.out.println("valore da cercare: " + index);
-        for (Map.Entry<ImageView, Integer> entry : macchine.entrySet()) {
-            ImageView key = entry.getKey();
-            Integer value = entry.getValue();
-            System.out.println("Key=" + key + ", Value=" + value);
-            if (value != null && value == index) {
+        for (ImageView key : macchine.keySet()) {
+            if(macchine.get(key) == null) continue;
+            int value = macchine.get(key);
+            if (value == index) {
                 car = key;
-                System.out.println("Key=" + key + ", Value=" + value);
                 break;
             }
         }
 
-        car.setLayoutX(308);
+        car.setLayoutY(323);
         car.setRotate(-180);
-        sleep(2000);
+
+        sleep(1000);
+
+        car.setLayoutX(300);
+
+        sleep(1000);
+
         car.setVisible(false);
 
         macchine.put(car, null);

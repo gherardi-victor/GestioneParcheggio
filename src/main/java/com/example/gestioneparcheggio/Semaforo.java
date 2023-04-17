@@ -36,6 +36,7 @@ public class Semaforo extends Thread{
                     aperta.setVisible(true);
                     chiusa.setVisible(false);
                 }
+                sleep(500);
             }
         }catch (Exception e){
             System.out.println(e.getMessage());

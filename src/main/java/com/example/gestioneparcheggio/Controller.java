@@ -48,7 +48,7 @@ public class Controller extends Thread{
                 System.out.println(e.getMessage());
             }
         }
-        macchine = new ImageView[]{car_purple_1, car_purple_2, car_white_1, car_white_2, car_yellow_1, car_yellow_2, car_green_1, car_green_2, car_blue_1, car_blue_2, car_celeste_1, car_celeste_2, car_red_1, car_red_2};
+        macchine = new ImageView[]{car_purple_1, car_green_2, car_blue_1, car_white_1, car_yellow_1, car_red_1, car_white_2, car_celeste_2, car_yellow_2, car_purple_2, car_green_1, car_blue_2, car_celeste_1, car_red_2};
         parcheggio = new Parcheggio(macchine);
         parcheggio.start();
 
