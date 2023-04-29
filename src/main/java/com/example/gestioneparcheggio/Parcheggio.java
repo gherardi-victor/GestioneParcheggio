@@ -24,8 +24,8 @@ public class Parcheggio extends Thread{
             sleep(2000);
             while (true){
                 controllaPosti();
+                sleep(2000);
                 if(Parcheggio.pieno){
-                    System.out.println("PARCHEGGIO PIENO, LIBERO");
                     liberaParcheggio();
                     continue;
                 }
@@ -37,21 +37,17 @@ public class Parcheggio extends Thread{
                     }
                 }
                 if (parcheggioVuoto){
-                    System.out.println("PARCHEGGIO PIENO, PARCHEGGIO");
                     parcheggiaAuto();
                     continue;
                 }
 
                 if(Math.random() < 0.7){
-                    System.out.println("PARCHEGGIO");
                     parcheggiaAuto();
                 } else {
-                    System.out.println("LIBERO");
                     liberaParcheggio();
                 }
 
                 controllaPosti();
-                sleep(2000);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -79,25 +75,51 @@ public class Parcheggio extends Thread{
         car.setLayoutY(608);
         car.setVisible(true);
 
-        sleep(1000);
+        for (int i = 608; i > 323; i--){
+            car.setLayoutY(i);
+            sleep(5);
+        }
+        //car.setLayoutY(323);
+        sleep(200);
+        for (int i = -90; i < 0; i++){
+            car.setRotate(i);
+            sleep(3);
+        }
+        //car.setRotate(0);
 
-        car.setRotate(0);
-        car.setLayoutY(323);
-
-        sleep(1000);
+        sleep(200);
 
         // sposta la macchina alla stessa x del parcheggio scelto (random)
         int[] positions = {556, 721, 882, 1042};
-        car.setLayoutX(positions[numeroParcheggio % 4]);
-        sleep(1000);
+
+        for(int i = 44; i < positions[numeroParcheggio % 4]; i++){
+            car.setLayoutX(i);
+            sleep(6);
+        }
+        //car.setLayoutX(positions[numeroParcheggio % 4]);
+        sleep(200);
 
         // parcheggiare l'auto normale o in retro
-        car.setRotate(Math.random() < 0.5 ? 90 : -90);
+        int rotazione = Math.random() < 0.5 ? 90 : -90;
+        for(int i = 0; i != rotazione;){
+            car.setRotate(i);
+            if(rotazione == 90) i++;
+            else i--;
+            sleep(3);
+        }
+        //car.setRotate(rotazione);
 
-        sleep(1000);
+        sleep(200);
 
         // parcheggiare l'auto nel posto
-        car.setLayoutY(numeroParcheggio < 4 ? 92 : 562);
+        int altezza = numeroParcheggio < 4 ? 92 : 562;
+        for(int i = 323; i != altezza;){
+            car.setLayoutY(i);
+            if(altezza == 92) i--;
+            else i++;
+            sleep(5);
+        }
+        //car.setLayoutY(numeroParcheggio < 4 ? 92 : 562);
 
         // associare il parcheggio alla macchina
         macchine.put(car, numeroParcheggio);
@@ -127,11 +149,11 @@ public class Parcheggio extends Thread{
         car.setLayoutY(323);
         car.setRotate(-180);
 
-        sleep(1000);
+        sleep(200);
 
         car.setLayoutX(300);
 
-        sleep(1000);
+        sleep(200);
 
         car.setVisible(false);
 
