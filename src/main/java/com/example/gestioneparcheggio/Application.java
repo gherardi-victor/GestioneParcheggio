@@ -17,7 +17,6 @@ public class Application extends javafx.application.Application {
         stage.show();
         caricato = true;
     }
-
     public static void main(String[] args) {
         launch();
     }

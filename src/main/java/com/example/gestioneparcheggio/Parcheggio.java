@@ -100,11 +100,20 @@ public class Parcheggio extends Thread{
         sleep(200);
 
         // parcheggiare l'auto normale o in retro
-        int rotazione = Math.random() < 0.5 ? 90 : -90;
+        /*int rotazione = Math.random() < 0.5 ? 90 : -90;
         for(int i = 0; i != rotazione;){
             car.setRotate(i);
             if(rotazione == 90) i++;
             else i--;
+            sleep(3);
+        }*/
+        int rotazione = Math.random() < 0.5 ? 90 : -90;
+        int k = 0;
+        while (k != rotazione) {
+            car.setRotate(k);
+            if (rotazione == 90) k++;
+            else k--;
+            car.setRotate(k);
             sleep(3);
         }
         //car.setRotate(rotazione);
@@ -112,11 +121,21 @@ public class Parcheggio extends Thread{
         sleep(200);
 
         // parcheggiare l'auto nel posto
-        int altezza = numeroParcheggio < 4 ? 92 : 562;
+        /*int altezza = numeroParcheggio < 4 ? 92 : 562;
         for(int i = 323; i != altezza;){
             car.setLayoutY(i);
             if(altezza == 92) i--;
             else i++;
+            sleep(5);
+        }*/
+
+        int altezza = numeroParcheggio < 4 ? 92 : 562;
+        int i = 323;
+        while (i != altezza) {
+            car.setLayoutY(i);
+            if (altezza == 92) i--;
+            else i++;
+            car.setLayoutY(i);
             sleep(5);
         }
         //car.setLayoutY(numeroParcheggio < 4 ? 92 : 562);
@@ -146,14 +165,45 @@ public class Parcheggio extends Thread{
             }
         }
 
-        car.setLayoutY(323);
-        car.setRotate(-180);
+        int altezzaCorrente = (int)car.getLayoutY();
+        int i = altezzaCorrente;
+        while(i != 323){
+            car.setLayoutY(i);
+            if(altezzaCorrente < 323) i++;
+            else i--;
+            car.setLayoutY(i);
+            sleep(5);
+        }
 
         sleep(200);
 
-        car.setLayoutX(300);
+        int rotazione = (int)car.getRotate();
+        int k = rotazione;
+        while(k != -180 && k != 180){
+            car.setRotate(k);
+            if(rotazione == 90) k++;
+            else k--;
+            car.setRotate(k);
+            sleep(3);
+        }
 
         sleep(200);
+
+        for(int j = (int)car.getLayoutX(); j > 500; j--){
+            car.setLayoutX(j);
+            sleep(6);
+        }
+        sleep(200);
+        //car.setLayoutX(300);
+        Parcheggio.pieno = false;
+
+        sleep(100);
+
+        for(int j = (int)car.getLayoutX(); j != 44; j--){
+            car.setLayoutX(j);
+            Parcheggio.pieno = false;
+            sleep(4);
+        }
 
         car.setVisible(false);
 

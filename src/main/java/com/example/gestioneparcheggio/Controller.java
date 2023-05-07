@@ -7,6 +7,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+import java.util.Random;
 import java.util.concurrent.Semaphore;
 
 public class Controller extends Thread{
@@ -49,6 +50,15 @@ public class Controller extends Thread{
             }
         }
         macchine = new ImageView[]{car_purple_1, car_green_2, car_blue_1, car_white_1, car_yellow_1, car_red_1, car_white_2, car_celeste_2, car_yellow_2, car_purple_2, car_green_1, car_blue_2, car_celeste_1, car_red_2};
+        // shuffle delle immagini per non far vedere sempre le stesse
+        Random rand = new Random();
+        for (int i = 0; i < macchine.length; i++) {
+            int randomIndexToSwap = rand.nextInt(macchine.length);
+            ImageView temp = macchine[randomIndexToSwap];
+            macchine[randomIndexToSwap] = macchine[i];
+            macchine[i] = temp;
+        }
+
         parcheggio = new Parcheggio(macchine);
         parcheggio.start();
 
